@@ -8,6 +8,7 @@ module ElasticWhenever
 
     attr_reader :identifier
     attr_reader :mode
+    attr_reader :verbose
     attr_reader :variables
     attr_reader :assign_public_ip
     attr_reader :launch_type
@@ -20,6 +21,7 @@ module ElasticWhenever
     def initialize(args)
       @identifier = nil
       @mode = DRYRUN_MODE
+      @verbose = false
       @variables = []
       @assign_public_ip = 'DISABLED'
       @launch_type = 'EC2'
@@ -84,6 +86,9 @@ module ElasticWhenever
         end
         opts.on('-v', '--version', 'Print version') do
           @mode = PRINT_VERSION_MODE
+        end
+        opts.on('-V', '--verbose', 'Run rake jobs without --silent') do
+          @verbose = true
         end
       end.parse(args)
 
