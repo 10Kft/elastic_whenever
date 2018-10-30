@@ -64,8 +64,8 @@ module ElasticWhenever
                   task_count: 1,
                   network_configuration: {
                     awsvpc_configuration: {
-                      subnets: [ subnets ],
-                      security_groups: [ security_groups ],
+                      subnets: subnets.split(','),
+                      security_groups: security_groups.split(','),
                       assign_public_ip: assign_public_ip,
                     }
                   }
