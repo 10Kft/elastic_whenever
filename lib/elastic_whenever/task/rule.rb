@@ -47,8 +47,11 @@ module ElasticWhenever
 
       private
 
+      # Official docs -- https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduled_tasks.html
+      # For Schedule rule name, enter a unique name for your schedule rule. 
+      # Up to 64 letters, numbers, periods, hyphens, and underscores are allowed.
       def self.rule_name(identifier, commands)
-        "#{identifier}_#{Digest::SHA1.hexdigest(commands.map { |command| command.join("-") }.join("-"))}"
+        "#{identifier}_#{commands.map { |command| command.gsub!(/[^0-9A-Za-z\.\_]/, '-').join("-") }.join("-")}"
       end
 
       attr_reader :client
