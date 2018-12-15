@@ -52,7 +52,7 @@ module ElasticWhenever
       # Up to 64 letters, numbers, periods, hyphens, and underscores are allowed.
       def self.rule_name(identifier, commands)
         puts "commands => #{commands}"
-        "#{identifier}_#{commands.join("-").gsub!(/[^0-9A-Za-z\.\_]/, '-').gsub!('bundle-exec-rake','')[0,63]}"
+        "#{identifier[0,10]}_#{commands.join("-").gsub!(/[^0-9A-Za-z\.\_]/, '-').gsub!('bundle-exec-rake-','')}"[0,63]
       end
 
       attr_reader :client
