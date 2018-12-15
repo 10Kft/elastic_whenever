@@ -51,7 +51,8 @@ module ElasticWhenever
       # For Schedule rule name, enter a unique name for your schedule rule. 
       # Up to 64 letters, numbers, periods, hyphens, and underscores are allowed.
       def self.rule_name(identifier, commands)
-        "#{identifier}_#{commands.map { |command| command.gsub!(/[^0-9A-Za-z\.\_]/, '-').join("-") }.join("-")}"
+        puts "commands => #{commands}"
+        "#{identifier}_#{commands.join("-").gsub!(/[^0-9A-Za-z\.\_]/, '-')}"
       end
 
       attr_reader :client
