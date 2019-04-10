@@ -51,8 +51,8 @@ module ElasticWhenever
       # For Schedule rule name, enter a unique name for your schedule rule. 
       # Up to 64 letters, numbers, periods, hyphens, and underscores are allowed.
       def self.rule_name(identifier, commands)
-        puts "commands => #{commands}"
-        "#{identifier[0,10]}_#{commands.join("-").gsub!(/[^0-9A-Za-z\.\_]/, '-').gsub!('bundle-exec-rake-','')}"[0,63]
+        environment = ENV.fetch("RAILS_ENV"){ "development" }
+        "#{environment[0,4]}-#{identifier[0,5]}_#{commands.join("-").gsub!(/[^0-9A-Za-z\.\_]/, '-').chomp("-").gsub!('bundle-exec-rake-','')}"[0,63]
       end
 
       attr_reader :client
